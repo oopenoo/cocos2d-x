@@ -287,7 +287,7 @@ public:
      @brief Push value to Lua stack, return number of values in Lua stack
      */
     virtual int pushIntegerToLuaStack(int data) = 0;
-    virtual int pushFloatToLuaStack(int data) = 0;
+    virtual int pushFloatToLuaStack(float data) = 0;
     virtual int pushBooleanToLuaStack(int data) = 0;
     virtual int pushStringToLuaStack(const char* data) = 0;
     virtual int pushCCObjectToLuaStack(CCObject* pObject, const char* typeName) = 0;

@@ -236,7 +236,7 @@ int CCLuaEngine::pushIntegerToLuaStack(int data)
     return lua_gettop(m_state);
 }
 
-int CCLuaEngine::pushFloatToLuaStack(int data)
+int CCLuaEngine::pushFloatToLuaStack(float data)
 {
     lua_pushnumber(m_state, data);
     return lua_gettop(m_state);

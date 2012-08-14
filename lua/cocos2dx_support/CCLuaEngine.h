@@ -106,7 +106,7 @@ public:
     virtual int executeFunctionWithBooleanData(LUA_HANDLE nHandler, bool data);
     virtual int executeFunctionWithCCObject(LUA_HANDLE nHandler, CCObject* pObject, const char* typeName);    
     virtual int pushIntegerToLuaStack(int data);
-    virtual int pushFloatToLuaStack(int data);
+    virtual int pushFloatToLuaStack(float data);
     virtual int pushBooleanToLuaStack(int data);
     virtual int pushStringToLuaStack(const char* data);
     virtual int pushCCObjectToLuaStack(CCObject* pObject, const char* typeName);
