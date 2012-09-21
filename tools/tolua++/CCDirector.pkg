@@ -43,8 +43,8 @@ class CCDirector : public CCObject
     CCScheduler* getScheduler();
     CCActionManager* getActionManager();
     CCTouchDispatcher* getTouchDispatcher();
-    CCKeypadDispatcher* getKeypadDispatcher();
-    CCAccelerometer* getAccelerometer();
+    // CCKeypadDispatcher* getKeypadDispatcher();
+    // CCAccelerometer* getAccelerometer();
 
 	void setDepthTest(bool var);
 	void setProjection(ccDirectorProjection kProjection);
