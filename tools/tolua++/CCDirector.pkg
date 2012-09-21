@@ -14,6 +14,7 @@ class CCDirector : public CCObject
 
     bool isDisplayStats(void);
     void setDisplayStats(bool bDisplayFPS);
+    void setStatsPosition(const CCPoint& FPSPosition, const CCPoint& SPFPosition, const CCPoint& DrawsPosition);
 
     bool isPaused(void);
     unsigned int getTotalFrames(void);

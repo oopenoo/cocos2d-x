@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on Thu Sep 20 23:37:00 2012.
+** Generated automatically by tolua++-1.0.92 on Fri Sep 21 10:17:37 2012.
 */
 
 /****************************************************************************
@@ -10635,6 +10635,43 @@ static int tolua_Cocos2d_CCDirector_setDisplayStats00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'setDisplayStats'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setStatsPosition of class  CCDirector */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_setStatsPosition00
+static int tolua_Cocos2d_CCDirector_setStatsPosition00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CCDirector",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const CCPoint",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const CCPoint",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_isusertype(tolua_S,4,"const CCPoint",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CCDirector* self = (CCDirector*)  tolua_tousertype(tolua_S,1,0);
+  const CCPoint* FPSPosition = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const CCPoint* SPFPosition = ((const CCPoint*)  tolua_tousertype(tolua_S,3,0));
+  const CCPoint* DrawsPosition = ((const CCPoint*)  tolua_tousertype(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setStatsPosition'", NULL);
+#endif
+  {
+   self->setStatsPosition(*FPSPosition,*SPFPosition,*DrawsPosition);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setStatsPosition'.",&tolua_err);
  return 0;
 #endif
 }
@@ -55641,6 +55678,7 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getAnimationInterval",tolua_Cocos2d_CCDirector_getAnimationInterval00);
    tolua_function(tolua_S,"isDisplayStats",tolua_Cocos2d_CCDirector_isDisplayStats00);
    tolua_function(tolua_S,"setDisplayStats",tolua_Cocos2d_CCDirector_setDisplayStats00);
+   tolua_function(tolua_S,"setStatsPosition",tolua_Cocos2d_CCDirector_setStatsPosition00);
    tolua_function(tolua_S,"isPaused",tolua_Cocos2d_CCDirector_isPaused00);
    tolua_function(tolua_S,"getTotalFrames",tolua_Cocos2d_CCDirector_getTotalFrames00);
    tolua_function(tolua_S,"getOpenGLView",tolua_Cocos2d_CCDirector_getOpenGLView00);
