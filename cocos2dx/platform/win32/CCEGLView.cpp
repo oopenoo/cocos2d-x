@@ -408,12 +408,6 @@ void CCEGLView::setIMEKeyboardState(bool /*bOpen*/)
 
 }
 
-bool CCEGLView::enableRetina()
-{
-    m_bIsRetinaEnabled = true;
-    return true;
-}
-
 void CCEGLView::setMenuResource(LPCWSTR menu)
 {
     m_menu = menu;
