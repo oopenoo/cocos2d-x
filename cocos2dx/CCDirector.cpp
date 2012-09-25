@@ -355,6 +355,16 @@ void CCDirector::setStatsPosition(const CCPoint& FPSPosition, const CCPoint& SPF
     m_pFPSLabel->setPosition(ccpAdd(ccp(contentSize.width/2, contentSize.height/2), FPSPosition));
 }
 
+void CCDirector::setStatsFont(const char* fontname, int fontsize)
+{
+    m_pDrawsLabel->setFontName(fontname);
+    m_pDrawsLabel->setFontSize(fontsize);
+    m_pSPFLabel->setFontName(fontname);
+    m_pSPFLabel->setFontSize(fontsize);
+    m_pFPSLabel->setFontName(fontname);
+    m_pFPSLabel->setFontSize(fontsize);
+}
+
 void CCDirector::setProjection(ccDirectorProjection kProjection)
 {
     CCSize size = m_obWinSizeInPixels;
