@@ -367,7 +367,7 @@ void CCNode::setAnchorPoint(const CCPoint& point)
 /// contentSize getter
 const CCSize & CCNode::getContentSize()
 {
-    return m_tContentSize;
+    return m_tContentSizeScaled;
 }
 
 void CCNode::setContentSize(const CCSize & size)
@@ -379,6 +379,26 @@ void CCNode::setContentSize(const CCSize & size)
         m_tContentSizeScaled.width *= s_fContentScale;
         m_tContentSizeScaled.height *= s_fContentScale;
 
+        m_tAnchorPointInPoints = ccp(m_tContentSizeScaled.width * m_tAnchorPoint.x,
+                                     m_tContentSizeScaled.height * m_tAnchorPoint.y);
+        m_bIsTransformDirty = m_bIsInverseDirty = true;
+    }
+}
+
+const CCSize & CCNode::getContentSizeScaled()
+{
+    return m_tContentSizeScaled;
+}
+
+void CCNode::setContentSizeScaled(const CCSize & size)
+{
+    if( ! size.equals(m_tContentSizeScaled))
+    {
+        m_tContentSizeScaled = size;
+        m_tContentSize = size;
+        m_tContentSize.width /= s_fContentScale;
+        m_tContentSize.height *= s_fContentScale;
+        
         m_tAnchorPointInPoints = ccp(m_tContentSizeScaled.width * m_tAnchorPoint.x,
                                      m_tContentSizeScaled.height * m_tAnchorPoint.y);
         m_bIsTransformDirty = m_bIsInverseDirty = true;
@@ -444,7 +464,7 @@ void CCNode::setUserData(void *var)
 
 CCRect CCNode::boundingBox()
 {
-    CCRect rect = CCRectMake(0, 0, m_tContentSize.width, m_tContentSize.height);
+    CCRect rect = CCRectMake(0, 0, m_tContentSizeScaled.width, m_tContentSizeScaled.height);
     return CCRectApplyAffineTransform(rect, nodeToParentTransform());
 }
 

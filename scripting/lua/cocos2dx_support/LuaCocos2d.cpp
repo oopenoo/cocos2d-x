@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on Tue Sep 25 17:00:06 2012.
+** Generated automatically by tolua++-1.0.92 on Tue Sep 25 18:00:34 2012.
 */
 
 /****************************************************************************
@@ -11321,6 +11321,39 @@ static int tolua_Cocos2d_CCDirector_getContentScaleFactor00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getContentScaleFactor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setContentScaleFactor of class  CCDirector */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_setContentScaleFactor00
+static int tolua_Cocos2d_CCDirector_setContentScaleFactor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CCDirector",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CCDirector* self = (CCDirector*)  tolua_tousertype(tolua_S,1,0);
+  float scaleFactor = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setContentScaleFactor'", NULL);
+#endif
+  {
+   self->setContentScaleFactor(scaleFactor);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setContentScaleFactor'.",&tolua_err);
  return 0;
 #endif
 }
@@ -55734,6 +55767,7 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"replaceScene",tolua_Cocos2d_CCDirector_replaceScene00);
    tolua_function(tolua_S,"endToLua",tolua_Cocos2d_CCDirector_endToLua00);
    tolua_function(tolua_S,"getContentScaleFactor",tolua_Cocos2d_CCDirector_getContentScaleFactor00);
+   tolua_function(tolua_S,"setContentScaleFactor",tolua_Cocos2d_CCDirector_setContentScaleFactor00);
    tolua_function(tolua_S,"getScheduler",tolua_Cocos2d_CCDirector_getScheduler00);
    tolua_function(tolua_S,"getActionManager",tolua_Cocos2d_CCDirector_getActionManager00);
    tolua_function(tolua_S,"getTouchDispatcher",tolua_Cocos2d_CCDirector_getTouchDispatcher00);

@@ -38,6 +38,7 @@ class CCDirector : public CCObject
     void end @ endToLua ();
 
     float getContentScaleFactor(void);
+    void setContentScaleFactor(float scaleFactor);
 
     CCScheduler* getScheduler();
     CCActionManager* getActionManager();

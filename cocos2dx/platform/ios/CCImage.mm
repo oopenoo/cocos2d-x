@@ -23,6 +23,7 @@ THE SOFTWARE.
 ****************************************************************************/
 #import "CCImage.h"
 #import "CCFileUtils.h"
+#import "CCNode.h"
 #import <string>
 
 #import <Foundation/Foundation.h>
@@ -223,9 +224,11 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         constrainSize.width = pInfo->width;
         constrainSize.height = pInfo->height;
         
+        nSize /= cocos2d::CCNode::getContentScale();
+        
         // create the font   
         id font;
-        font = [UIFont fontWithName:fntName size:nSize];  
+        font = [UIFont fontWithName:fntName size:nSize];
         if (font)
         {
             dim = _calculateStringSizeWithFontOrZFont(str, font, &constrainSize, false);

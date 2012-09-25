@@ -232,7 +232,7 @@ public:
      */
     CC_PROPERTY_PASS_BY_REF(CCSize, m_tContentSize, ContentSize)
 
-    CCSize m_tContentSizeScaled;
+    CC_PROPERTY_PASS_BY_REF(CCSize, m_tContentSizeScaled, ContentSizeScaled)
     
     /** whether or not the node is running */
     bool m_bIsRunning;
@@ -621,6 +621,9 @@ public:
     CCPoint convertTouchToNodeSpaceAR(CCTouch * touch);
 
     static void setContentScale(float scale);
+    static float getContentScale(void) {
+        return s_fContentScale;
+    }
 };
 
 // end of base_node group

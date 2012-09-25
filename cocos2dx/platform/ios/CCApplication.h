@@ -68,9 +68,9 @@ public:
     
     virtual TargetEnvironment getTargetEnvironment() {
 #if !(TARGET_IPHONE_SIMULATOR)
-        return kTargetSimulator;
-#else
         return kTargetDevice;
+#else
+        return kTargetSimulator;
 #endif
     }
 

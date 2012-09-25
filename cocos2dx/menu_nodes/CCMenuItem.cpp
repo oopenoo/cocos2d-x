@@ -138,9 +138,9 @@ bool CCMenuItem::isEnabled()
 
 CCRect CCMenuItem::rect()
 {
-    return CCRectMake( m_tPosition.x - m_tContentSize.width * m_tAnchorPoint.x, 
-                      m_tPosition.y - m_tContentSize.height * m_tAnchorPoint.y,
-                      m_tContentSize.width, m_tContentSize.height);
+    return CCRectMake( m_tPosition.x - m_tContentSizeScaled.width * m_tAnchorPoint.x,
+                      m_tPosition.y - m_tContentSizeScaled.height * m_tAnchorPoint.y,
+                      m_tContentSizeScaled.width, m_tContentSizeScaled.height);
 }
 
 bool CCMenuItem::isSelected()
@@ -176,7 +176,7 @@ void CCMenuItemLabel::setLabel(CCNode* var)
     {
         addChild(var);
         var->setAnchorPoint(ccp(0, 0));
-        setContentSize(var->getContentSize());
+        setContentSizeScaled(var->getContentSize());
     }
     
     if (m_pLabel)
@@ -230,7 +230,7 @@ CCMenuItemLabel::~CCMenuItemLabel()
 void CCMenuItemLabel::setString(const char * label)
 {
     dynamic_cast<CCLabelProtocol*>(m_pLabel)->setString(label);
-    this->setContentSize(m_pLabel->getContentSize());
+    this->setContentSizeScaled(m_pLabel->getContentSize());
 }
 
 void CCMenuItemLabel::activate()
@@ -479,7 +479,7 @@ void CCMenuItemSprite::setNormalImage(CCNode* pImage)
         }
 
         m_pNormalImage = pImage;
-        this->setContentSize(m_pNormalImage->getContentSize());
+        this->setContentSizeScaled(m_pNormalImage->getContentSize());
         this->updateImagesVisibility();
     }
 }
@@ -620,7 +620,7 @@ bool CCMenuItemSprite::initWithNormalSprite(CCNode* normalSprite, CCNode* select
 
     if(m_pNormalImage)
     {
-        this->setContentSize(m_pNormalImage->getContentSize());
+        this->setContentSizeScaled(m_pNormalImage->getContentSize());
     }
     return true;
 }
@@ -937,7 +937,7 @@ void CCMenuItemToggle::setSelectedIndex(unsigned int index)
         CCMenuItem* item = (CCMenuItem*)m_pSubItems->objectAtIndex(m_uSelectedIndex);
         this->addChild(item, 0, kCurrentItem);
         const CCSize& s = item->getContentSize();
-        this->setContentSize(s);
+        this->setContentSizeScaled(s);
         item->setPosition( ccp( s.width/2, s.height/2 ) );
     }
 }
