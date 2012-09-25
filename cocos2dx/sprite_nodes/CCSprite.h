@@ -369,6 +369,7 @@ protected:
 
     // texture
     CCRect m_obRect;
+    CCRect m_obRectScaled;
     bool   m_bRectRotated;
 
     // Offset Position (used by Zwoptex)

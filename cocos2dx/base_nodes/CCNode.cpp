@@ -51,6 +51,8 @@ NS_CC_BEGIN
 // XXX: Yes, nodes might have a sort problem once every 15 days if the game runs at 60 FPS and each frame sprites are reordered.
 static int s_globalOrderOfArrival = 1;
 
+float CCNode::s_fContentScale = 1.0f;
+
 CCNode::CCNode(void)
 : m_nZOrder(0)
 , m_fVertexZ(0.0f)
@@ -69,6 +71,7 @@ CCNode::CCNode(void)
 , m_tAnchorPoint(CCPointZero)
 , m_tAnchorPointInPoints(CCPointZero)
 , m_tContentSize(CCSizeZero)
+, m_tContentSizeScaled(CCSizeZero)
 , m_bIsRunning(false)
 , m_pParent(NULL)
 // "whole screen" objects. like Scenes and Layers, should set m_bIgnoreAnchorPointForPosition to false
@@ -355,7 +358,8 @@ void CCNode::setAnchorPoint(const CCPoint& point)
     if( ! point.equals(m_tAnchorPoint))
     {
         m_tAnchorPoint = point;
-        m_tAnchorPointInPoints = ccp( m_tContentSize.width * m_tAnchorPoint.x, m_tContentSize.height * m_tAnchorPoint.y );
+        m_tAnchorPointInPoints = ccp(m_tContentSizeScaled.width * m_tAnchorPoint.x,
+                                     m_tContentSizeScaled.height * m_tAnchorPoint.y);
         m_bIsTransformDirty = m_bIsInverseDirty = true;
     }
 }
@@ -371,8 +375,12 @@ void CCNode::setContentSize(const CCSize & size)
     if( ! size.equals(m_tContentSize))
     {
         m_tContentSize = size;
+        m_tContentSizeScaled = size;
+        m_tContentSizeScaled.width *= s_fContentScale;
+        m_tContentSizeScaled.height *= s_fContentScale;
 
-        m_tAnchorPointInPoints = ccp( m_tContentSize.width * m_tAnchorPoint.x, m_tContentSize.height * m_tAnchorPoint.y );
+        m_tAnchorPointInPoints = ccp(m_tContentSizeScaled.width * m_tAnchorPoint.x,
+                                     m_tContentSizeScaled.height * m_tAnchorPoint.y);
         m_bIsTransformDirty = m_bIsInverseDirty = true;
     }
 }
@@ -1115,6 +1123,11 @@ CCPoint CCNode::convertTouchToNodeSpaceAR(CCTouch *touch)
 {
     CCPoint point = touch->getLocation();
     return this->convertToNodeSpaceAR(point);
+}
+
+void CCNode::setContentScale(float scale)
+{
+    s_fContentScale = scale;
 }
 
 NS_CC_END

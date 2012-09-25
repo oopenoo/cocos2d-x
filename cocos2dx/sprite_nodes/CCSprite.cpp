@@ -58,7 +58,6 @@ NS_CC_BEGIN
 #define RENDER_IN_SUBPIXEL(__A__) ( (int)(__A__))
 #endif
 
-
 CCSprite* CCSprite::spriteWithTexture(CCTexture2D *pTexture)
 {
     return CCSprite::createWithTexture(pTexture);
@@ -362,8 +361,8 @@ void CCSprite::setTextureRect(const CCRect& rect, bool rotated, const CCSize& un
         relativeOffset.y = -relativeOffset.y;
     }
 
-    m_obOffsetPosition.x = relativeOffset.x + (m_tContentSize.width - m_obRect.size.width) / 2;
-    m_obOffsetPosition.y = relativeOffset.y + (m_tContentSize.height - m_obRect.size.height) / 2;
+    m_obOffsetPosition.x = relativeOffset.x + (m_tContentSizeScaled.width - m_obRectScaled.size.width) / 2;
+    m_obOffsetPosition.y = relativeOffset.y + (m_tContentSizeScaled.height - m_obRectScaled.size.height) / 2;
 
     // rendering using batch node
     if (m_pobBatchNode)
@@ -378,8 +377,8 @@ void CCSprite::setTextureRect(const CCRect& rect, bool rotated, const CCSize& un
         // Atlas: Vertex
         float x1 = 0 + m_obOffsetPosition.x;
         float y1 = 0 + m_obOffsetPosition.y;
-        float x2 = x1 + m_obRect.size.width;
-        float y2 = y1 + m_obRect.size.height;
+        float x2 = x1 + m_obRectScaled.size.width;
+        float y2 = y1 + m_obRectScaled.size.height;
 
         // Don't update Z.
         m_sQuad.bl.vertices = vertex3(x1, y1, 0);
@@ -393,6 +392,11 @@ void CCSprite::setTextureRect(const CCRect& rect, bool rotated, const CCSize& un
 void CCSprite::setVertexRect(const CCRect& rect)
 {
     m_obRect = rect;
+    m_obRectScaled = rect;
+    m_obRectScaled.origin.x *= s_fContentScale;
+    m_obRectScaled.origin.y *= s_fContentScale;
+    m_obRectScaled.size.width *= s_fContentScale;
+    m_obRectScaled.size.height *= s_fContentScale;
 }
 
 void CCSprite::setTextureCoords(CCRect rect)
@@ -509,7 +513,7 @@ void CCSprite::updateTransform(void)
             // calculate the Quad based on the Affine Matrix
             //
 
-            CCSize size = m_obRect.size;
+            CCSize size = m_obRectScaled.size;
 
             float x1 = m_obOffsetPosition.x;
             float y1 = m_obOffsetPosition.y;
@@ -623,6 +627,8 @@ void CCSprite::draw(void)
 #elif CC_SPRITE_DEBUG_DRAW == 2
     // draw texture box
     CCSize s = this->getTextureRect().size;
+    s.width *= s_fContentScale;
+    s.height *= s_fContentScale;
     CCPoint offsetPix = this->getOffsetPosition();
     CCPoint vertices[4] = {
         ccp(offsetPix.x,offsetPix.y), ccp(offsetPix.x+s.width,offsetPix.y),
@@ -1051,8 +1057,8 @@ void CCSprite::setBatchNode(CCSpriteBatchNode *pobSpriteBatchNode)
 
         float x1 = m_obOffsetPosition.x;
         float y1 = m_obOffsetPosition.y;
-        float x2 = x1 + m_obRect.size.width;
-        float y2 = y1 + m_obRect.size.height;
+        float x2 = x1 + m_obRectScaled.size.width;
+        float y2 = y1 + m_obRectScaled.size.height;
         m_sQuad.bl.vertices = vertex3( x1, y1, 0 );
         m_sQuad.br.vertices = vertex3( x2, y1, 0 );
         m_sQuad.tl.vertices = vertex3( x1, y2, 0 );
