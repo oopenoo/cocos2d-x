@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on Thu Sep 20 23:37:00 2012.
+** Generated automatically by tolua++-1.0.92 on Tue Sep 25 15:36:53 2012.
 */
 
 /****************************************************************************
@@ -9014,38 +9014,6 @@ static int tolua_Cocos2d_CCEGLViewProtocol_getScaleY00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: isRetinaEnabled of class  CCEGLViewProtocol */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCEGLViewProtocol_isRetinaEnabled00
-static int tolua_Cocos2d_CCEGLViewProtocol_isRetinaEnabled00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"const CCEGLViewProtocol",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const CCEGLViewProtocol* self = (const CCEGLViewProtocol*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'isRetinaEnabled'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->isRetinaEnabled();
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'isRetinaEnabled'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: sharedFileUtils of class  CCFileUtils */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_CCFileUtils_sharedFileUtils00
 static int tolua_Cocos2d_CCFileUtils_sharedFileUtils00(lua_State* tolua_S)
@@ -10731,40 +10699,6 @@ static int tolua_Cocos2d_CCDirector_getOpenGLView00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getOpenGLView'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: enableRetinaDisplay of class  CCDirector */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_enableRetinaDisplay00
-static int tolua_Cocos2d_CCDirector_enableRetinaDisplay00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"CCDirector",0,&tolua_err) ||
-     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  CCDirector* self = (CCDirector*)  tolua_tousertype(tolua_S,1,0);
-  bool bEnableRetina = ((bool)  tolua_toboolean(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'enableRetinaDisplay'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->enableRetinaDisplay(bEnableRetina);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'enableRetinaDisplay'.",&tolua_err);
  return 0;
 #endif
 }
@@ -15968,6 +15902,35 @@ static int tolua_Cocos2d_CCNode_create00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setContentScale of class  CCNode */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCNode_setContentScale00
+static int tolua_Cocos2d_CCNode_setContentScale00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"CCNode",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float scale = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   CCNode::setContentScale(scale);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setContentScale'.",&tolua_err);
  return 0;
 #endif
 }
@@ -55567,7 +55530,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getViewPortRect",tolua_Cocos2d_CCEGLViewProtocol_getViewPortRect00);
    tolua_function(tolua_S,"getScaleX",tolua_Cocos2d_CCEGLViewProtocol_getScaleX00);
    tolua_function(tolua_S,"getScaleY",tolua_Cocos2d_CCEGLViewProtocol_getScaleY00);
-   tolua_function(tolua_S,"isRetinaEnabled",tolua_Cocos2d_CCEGLViewProtocol_isRetinaEnabled00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"CCFileUtils","CCFileUtils","",NULL);
   tolua_beginmodule(tolua_S,"CCFileUtils");
@@ -55644,7 +55606,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"isPaused",tolua_Cocos2d_CCDirector_isPaused00);
    tolua_function(tolua_S,"getTotalFrames",tolua_Cocos2d_CCDirector_getTotalFrames00);
    tolua_function(tolua_S,"getOpenGLView",tolua_Cocos2d_CCDirector_getOpenGLView00);
-   tolua_function(tolua_S,"enableRetinaDisplay",tolua_Cocos2d_CCDirector_enableRetinaDisplay00);
    tolua_function(tolua_S,"getWinSize",tolua_Cocos2d_CCDirector_getWinSize00);
    tolua_function(tolua_S,"getWinSizeInPixels",tolua_Cocos2d_CCDirector_getWinSizeInPixels00);
    tolua_function(tolua_S,"convertToGL",tolua_Cocos2d_CCDirector_convertToGL00);
@@ -55811,6 +55772,7 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"registerScriptHandler",tolua_Cocos2d_CCNode_registerScriptHandler00);
    tolua_function(tolua_S,"unregisterScriptHandler",tolua_Cocos2d_CCNode_unregisterScriptHandler00);
    tolua_function(tolua_S,"create",tolua_Cocos2d_CCNode_create00);
+   tolua_function(tolua_S,"setContentScale",tolua_Cocos2d_CCNode_setContentScale00);
   tolua_endmodule(tolua_S);
   tolua_constant(tolua_S,"kCCTexture2DPixelFormat_RGBA8888",kCCTexture2DPixelFormat_RGBA8888);
   tolua_constant(tolua_S,"kCCTexture2DPixelFormat_RGB888",kCCTexture2DPixelFormat_RGB888);
