@@ -29,46 +29,48 @@ bool HelloWorld::init()
     
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
-
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
-
-    // add a "close" icon to exit the progress. it's an autorelease object
-    CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
-                                        "CloseNormal.png",
-                                        "CloseSelected.png",
-                                        this,
-                                        menu_selector(HelloWorld::menuCloseCallback));
     
-	pCloseItem->setPosition(ccp(winSize.width - 20 + origin.x, 20 + origin.y));
+    CCLayerColor* pLayer = CCLayerColor::create(ccc4(96, 128, 128, 255));
+    addChild(pLayer);
 
-    // create menu, it's an autorelease object
-    CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
-    pMenu->setPosition(CCPointZero);
-    this->addChild(pMenu, 1);
+    // left bottom
+    CCSprite* pSprite1 = CCSprite::create("label.png");
+    pSprite1->setRotation(-90);
+    pSprite1->setAnchorPoint(ccp(0, 1));
+    pSprite1->setPosition(ccp(0, 0));
+    this->addChild(pSprite1, 0);
 
-    /////////////////////////////
-    // 3. add your codes below...
+    // left top
+    CCSprite* pSprite2 = CCSprite::create("label.png");
+    pSprite2->setAnchorPoint(ccp(0, 1));
+    pSprite2->setPosition(ccp(0, 640));
+    this->addChild(pSprite2, 0);
+    
+    // right top
+    CCSprite* pSprite3 = CCSprite::create("label.png");
+    pSprite3->setRotation(90);
+    pSprite3->setAnchorPoint(ccp(0, 1));
+    pSprite3->setPosition(ccp(960, 640));
+    this->addChild(pSprite3, 0);
+    
+    // right bottom
+    CCSprite* pSprite4 = CCSprite::create("label.png");
+    pSprite4->setRotation(180);
+    pSprite4->setAnchorPoint(ccp(0, 1));
+    pSprite4->setPosition(ccp(960, 0));
+    this->addChild(pSprite4, 0);
 
-    // add a label shows "Hello World"
-    // create and initialize a label
-    CCLabelTTF* pLabel = CCLabelTTF::create("Hello World", "Arial", 24);
+    // right center
+    CCSprite* pSprite5 = CCSprite::create("label.png");
+    pSprite5->setFlipX(true);
+    pSprite5->setAnchorPoint(ccp(1, 0.5f));
+    pSprite5->setPosition(ccp(960, 320));
+    this->addChild(pSprite5, 0);
 
-    // position the label on the center of the screen
-    pLabel->setPosition(ccp(winSize.width/2 + origin.x, winSize.height - 50 + origin.y));
-
-    // add the label as a child to this layer
-    this->addChild(pLabel, 1);
-
-    // add "HelloWorld" splash screen"
-    CCSprite* pSprite = CCSprite::create("HelloWorld.png");
-
-    // position the sprite on the center of the screen
-    pSprite->setPosition(ccp(winSize.width/2 + origin.x, winSize.height/2 + origin.y));
-
-    // add the sprite as a child to this layer
-    this->addChild(pSprite, 0);
+    // center
+    CCSprite* pSprite9 = CCSprite::create("label.png");
+    pSprite9->setPosition(ccp(480, 320));
+    this->addChild(pSprite9, 0);
     
     return true;
 }

@@ -16,20 +16,33 @@ bool AppDelegate::applicationDidFinishLaunching() {
     CCDirector *pDirector = CCDirector::sharedDirector();
 
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
-	//pDirector->setProjection(kCCDirectorProjection2D);
-	
+    pDirector->setProjection(kCCDirectorProjection2D);
+    
+    CCSize designResolutionSize = CCSizeMake(960, 640);
 	if (pDirector->getWinSize().height > 320)
 	{
 		CCFileUtils::sharedFileUtils()->setResourceDirectory("iphonehd");
-		pDirector->setContentScaleFactor(2.0f);
+        if (designResolutionSize.height > pDirector->getWinSize().height)
+        {
+            CCDirector::sharedDirector()->setContentScaleFactor(2.0f);
+        }
 	}
 	else
+    {
 		CCFileUtils::sharedFileUtils()->setResourceDirectory("iphone");
+        if (designResolutionSize.height > pDirector->getWinSize().height)
+        {
+            // render sprite 200%
+            CCNode::setContentScale(2.0f);
+        }
+    }
 	
-	CCEGLView::sharedOpenGLView()->setDesignResolutionSize(480, 320, kResolutionShowAll);
+	CCEGLView::sharedOpenGLView()->setDesignResolutionSize(designResolutionSize.width,
+                                                           designResolutionSize.height,
+                                                           kResolutionNoBorder);
 
     // turn on display FPS
-    pDirector->setDisplayStats(true);
+//    pDirector->setDisplayStats(true);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60);
