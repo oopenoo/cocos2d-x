@@ -228,7 +228,7 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         
         // create the font   
         id font;
-        font = [UIFont fontWithName:fntName size:nSize];
+        font = [UIFont fontWithName:fntName size:nSize];  
         if (font)
         {
             dim = _calculateStringSizeWithFontOrZFont(str, font, &constrainSize, false);
@@ -291,8 +291,8 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
             dim.height = constrainSize.height;
         }
         
-//        dim.width = (int)(dim.width / 2) * 2 + 2;
-//        dim.height = (int)(dim.height / 2) * 2 + 2;
+        dim.width = (int)(dim.width / 2) * 2 + 2;
+        dim.height = (int)(dim.height / 2) * 2 + 2;
         
         unsigned char* data = new unsigned char[(int)(dim.width * dim.height * 4)];
         memset(data, 0, (int)(dim.width * dim.height * 4));
