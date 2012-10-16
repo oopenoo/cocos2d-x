@@ -46,7 +46,6 @@ public:
     virtual bool isOpenGLReady();
     virtual void end();
     virtual void swapBuffers();
-    virtual bool setContentScaleFactor(float contentScaleFactor);
     virtual void setFrameSize(float width, float height);
     virtual void setIMEKeyboardState(bool bOpen);
 

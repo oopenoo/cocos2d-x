@@ -152,7 +152,6 @@ bool CCDirector::init(void)
     m_pobOpenGLView = NULL;
 
     m_fContentScaleFactor = 1.0f;
-    m_bIsContentScaleSupported = false;
 
     // scheduler
     m_pScheduler = new CCScheduler();
@@ -330,12 +329,7 @@ void CCDirector::setOpenGLView(CCEGLView *pobOpenGLView)
         
         CHECK_GL_ERROR_DEBUG();
 
-        if (m_fContentScaleFactor != 1)
-        {
-            updateContentScaleFactor();
-        }
-
-         m_pobOpenGLView->setTouchDelegate(m_pTouchDispatcher);
+        m_pobOpenGLView->setTouchDelegate(m_pTouchDispatcher);
         m_pTouchDispatcher->setDispatchEvents(true);
     }
 }
@@ -367,8 +361,7 @@ void CCDirector::setStatsFont(const char* fontname, int fontsize)
 
 void CCDirector::setProjection(ccDirectorProjection kProjection)
 {
-    CCSize size = m_obWinSizeInPixels;
-    CCSize sizePoint = m_obWinSizeInPoints;
+    CCSize size = m_obWinSizeInPoints;
 
     if (m_pobOpenGLView)
     {
@@ -440,7 +433,7 @@ void CCDirector::purgeCachedData(void)
 
 float CCDirector::getZEye(void)
 {
-    return (m_obWinSizeInPixels.height / 1.1566f);    
+    return (m_obWinSizeInPoints.height / 1.1566f);
 }
 
 void CCDirector::setAlphaBlending(bool bOn)
@@ -849,11 +842,6 @@ void CCDirector::createStatsLabel()
 * mobile platforms specific functions
 **************************************************/
 
-void CCDirector::updateContentScaleFactor()
-{
-    m_bIsContentScaleSupported = m_pobOpenGLView->setContentScaleFactor(m_fContentScaleFactor);
-}
-
 float CCDirector::getContentScaleFactor(void)
 {
     return m_fContentScaleFactor;
@@ -864,15 +852,6 @@ void CCDirector::setContentScaleFactor(float scaleFactor)
     if (scaleFactor != m_fContentScaleFactor)
     {
         m_fContentScaleFactor = scaleFactor;
-        m_obWinSizeInPixels = CCSizeMake(m_obWinSizeInPoints.width * scaleFactor, m_obWinSizeInPoints.height * scaleFactor);
-
-        if (m_pobOpenGLView)
-        {
-            updateContentScaleFactor();
-        }
-
-        // update projection
-        setProjection(m_eProjection);
     }
 }
 

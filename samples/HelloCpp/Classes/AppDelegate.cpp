@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
+#include "AppMacros.h"
 
 USING_NS_CC;
 
@@ -16,33 +17,29 @@ bool AppDelegate::applicationDidFinishLaunching() {
     CCDirector *pDirector = CCDirector::sharedDirector();
 
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
-    pDirector->setProjection(kCCDirectorProjection2D);
+	//pDirector->setProjection(kCCDirectorProjection2D);
+	CCSize screenSize = CCEGLView::sharedOpenGLView()->getFrameSize();
     
-    CCSize designResolutionSize = CCSizeMake(960, 640);
-	if (pDirector->getWinSize().height > 320)
+	if (screenSize.height > 768)
 	{
-		CCFileUtils::sharedFileUtils()->setResourceDirectory("iphonehd");
-        if (designResolutionSize.height > pDirector->getWinSize().height)
-        {
-            CCDirector::sharedDirector()->setContentScaleFactor(2.0f);
-        }
+		CCFileUtils::sharedFileUtils()->setResourceDirectory("ipadhd");
+        pDirector->setContentScaleFactor(1536.0f/kDesignResolutionSize_height);
 	}
+    else if (screenSize.height > 320)
+    {
+        CCFileUtils::sharedFileUtils()->setResourceDirectory("ipad");
+        pDirector->setContentScaleFactor(768.0f/kDesignResolutionSize_height);
+    }
 	else
     {
 		CCFileUtils::sharedFileUtils()->setResourceDirectory("iphone");
-        if (designResolutionSize.height > pDirector->getWinSize().height)
-        {
-            // render sprite 200%
-            CCNode::setContentScale(2.0f);
-        }
+        pDirector->setContentScaleFactor(320.0f/kDesignResolutionSize_height);
     }
 	
-	CCEGLView::sharedOpenGLView()->setDesignResolutionSize(designResolutionSize.width,
-                                                           designResolutionSize.height,
-                                                           kResolutionNoBorder);
-
+    CCEGLView::sharedOpenGLView()->setDesignResolutionSize(kDesignResolutionSize_width, kDesignResolutionSize_height, kResolutionNoBorder);
+    
     // turn on display FPS
-//    pDirector->setDisplayStats(true);
+    pDirector->setDisplayStats(true);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60);

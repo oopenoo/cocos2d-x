@@ -91,7 +91,8 @@ void CCEGLViewProtocol::setDesignResolutionSize(float width, float height, Resol
     
     // reset director's member variables to fit visible rect
     CCDirector::sharedDirector()->createStatsLabel();
-    CCDirector::sharedDirector()->m_obWinSizeInPoints = CCDirector::sharedDirector()->m_obWinSizeInPixels = getSize(); 
+    CCDirector::sharedDirector()->m_obWinSizeInPoints = getSize();
+    CCDirector::sharedDirector()->m_obWinSizeInPixels = CCSizeMake(m_obDesignResolutionSize.width*CC_CONTENT_SCALE_FACTOR(), m_obDesignResolutionSize.height*CC_CONTENT_SCALE_FACTOR());
     CCDirector::sharedDirector()->setGLDefaultValues();
 }
 
@@ -138,12 +139,6 @@ CCPoint CCEGLViewProtocol::getVisibleOrigin() const
 void CCEGLViewProtocol::setTouchDelegate(EGLTouchDelegate * pDelegate)
 {
     m_pDelegate = pDelegate;
-}
-
-bool CCEGLViewProtocol::setContentScaleFactor(float contentScaleFactor)
-{
-    m_fScaleX = m_fScaleY = contentScaleFactor;
-    return false;
 }
 
 void CCEGLViewProtocol::setViewPortInPoints(float x , float y , float w , float h)
