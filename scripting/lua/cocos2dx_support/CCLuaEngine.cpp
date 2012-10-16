@@ -376,6 +376,9 @@ int CCLuaEngine::executeCallFuncActionEvent(CCCallFunc* pAction, CCObject* pTarg
 
 int CCLuaEngine::executeSchedule(CCTimer* pTimer, float dt, CCNode* pNode/* = NULL*/)
 {
+    struct cc_timeval now, after;
+    CCTime::gettimeofdayCocos2d(&now, NULL);
+
     int ret = 0;
     do 
     {
@@ -386,6 +389,14 @@ int CCLuaEngine::executeSchedule(CCTimer* pTimer, float dt, CCNode* pNode/* = NU
         pushFloat(dt);
         ret = executeFunctionByHandler(nScriptHandler, 1);
     } while (0);
+
+    CCTime::gettimeofdayCocos2d(&after, NULL);
+    float executeTime = (after.tv_usec - now.tv_usec) / 1000000.0f;
+    if (executeTime >= 1.0f / 60.0f * 0.8f)
+    {
+        CCLOG("[WARNING] SCRIPT SCHEDULE EXECUTE TIME: %0.4f", executeTime);
+    }
+
     return ret;
 }
 
