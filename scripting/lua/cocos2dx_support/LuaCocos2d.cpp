@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on Tue Oct 30 10:45:39 2012.
+** Generated automatically by tolua++-1.0.92 on Tue Oct 30 11:09:26 2012.
 */
 
 /****************************************************************************
@@ -16034,35 +16034,6 @@ static int tolua_Cocos2d_CCNode_create00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setContentScale of class  CCNode */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCNode_setContentScale00
-static int tolua_Cocos2d_CCNode_setContentScale00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"CCNode",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  float scale = ((float)  tolua_tonumber(tolua_S,2,0));
-  {
-   CCNode::setContentScale(scale);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setContentScale'.",&tolua_err);
  return 0;
 #endif
 }
@@ -55920,7 +55891,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"registerScriptHandler",tolua_Cocos2d_CCNode_registerScriptHandler00);
    tolua_function(tolua_S,"unregisterScriptHandler",tolua_Cocos2d_CCNode_unregisterScriptHandler00);
    tolua_function(tolua_S,"create",tolua_Cocos2d_CCNode_create00);
-   tolua_function(tolua_S,"setContentScale",tolua_Cocos2d_CCNode_setContentScale00);
   tolua_endmodule(tolua_S);
   tolua_constant(tolua_S,"kCCTexture2DPixelFormat_RGBA8888",kCCTexture2DPixelFormat_RGBA8888);
   tolua_constant(tolua_S,"kCCTexture2DPixelFormat_RGB888",kCCTexture2DPixelFormat_RGB888);
