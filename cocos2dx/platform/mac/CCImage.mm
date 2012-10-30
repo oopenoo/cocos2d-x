@@ -28,7 +28,6 @@ THE SOFTWARE.
 #include "CCImage.h"
 #include "CCFileUtils.h"
 #include "CCTexture2D.h"
-#include "CCNode.h"
 #include <string>
 #include <sys/stat.h>
 #include <stdio.h>
@@ -348,8 +347,6 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
 		NSString * string  = [NSString stringWithUTF8String:pText];
 		//string = [NSString stringWithFormat:@"d\r\nhello world hello kitty Hello what %@", string];
         
-        nSize /= cocos2d::CCNode::getContentScale();
-		
 		// font
 		NSFont *font = [[NSFontManager sharedFontManager]
 						 fontWithFamily:[NSString stringWithUTF8String:pFontName]
@@ -429,8 +426,8 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
 			dimensions.height = realDimensions.height;
 		}
         
-        dimensions.width = (int)(dimensions.width / 2) * 2 + 2;
-        dimensions.height = (int)(dimensions.height / 2) * 2 + 2;
+        dimensions.width = (int)(dimensions.width / 4) * 4 + 4;
+        dimensions.height = (int)(dimensions.height / 4) * 4 + 4;
 
 		NSUInteger POTWide = (NSUInteger)dimensions.width;
 		NSUInteger POTHigh = (NSUInteger)(MAX(dimensions.height, realDimensions.height));

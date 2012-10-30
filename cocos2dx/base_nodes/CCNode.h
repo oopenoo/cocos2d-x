@@ -233,8 +233,6 @@ public:
      */
     CC_PROPERTY_PASS_BY_REF(CCSize, m_tContentSize, ContentSize)
 
-    CC_PROPERTY_PASS_BY_REF(CCSize, m_tContentSizeScaled, ContentSizeScaled)
-    
     /** whether or not the node is running */
     bool m_bIsRunning;
     bool isRunning();
@@ -294,8 +292,6 @@ protected:
     bool m_bReorderChildDirty;
     int m_nScriptHandler;
     ccScriptType m_eScriptType;
-    static float s_fContentScale;
-
 private:
     //! lazy allocs
     void childrenAlloc(void);
@@ -623,11 +619,6 @@ public:
      @since v0.7.1
      */
     CCPoint convertTouchToNodeSpaceAR(CCTouch * touch);
-
-    static void setContentScale(float scale);
-    static float getContentScale(void) {
-        return s_fContentScale;
-    }
 };
 
 // end of base_node group

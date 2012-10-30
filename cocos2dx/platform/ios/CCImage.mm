@@ -23,7 +23,6 @@ THE SOFTWARE.
 ****************************************************************************/
 #import "CCImage.h"
 #import "CCFileUtils.h"
-#import "CCNode.h"
 #import <string>
 
 #import <Foundation/Foundation.h>
@@ -211,9 +210,7 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         CGSize dim, constrainSize;
         constrainSize.width = pInfo->width;
         constrainSize.height = pInfo->height;
-        
-        nSize /= cocos2d::CCNode::getContentScale();
-        
+                
         // create the font   
         id font;
         font = [UIFont fontWithName:fntName size:nSize];  
@@ -269,8 +266,8 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
             dim.height = constrainSize.height;
         }
         
-        dim.width = (int)(dim.width / 2) * 2 + 2;
-        dim.height = (int)(dim.height / 2) * 2 + 2;
+        dim.width = (int)(dim.width / 4) * 4 + 4;
+        dim.height = (int)(dim.height / 4) * 4 + 4;
         
         unsigned char* data = new unsigned char[(int)(dim.width * dim.height * 4)];
         memset(data, 0, (int)(dim.width * dim.height * 4));
