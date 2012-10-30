@@ -147,7 +147,7 @@ bool CCDirector::init(void)
     // purge ?
     m_bPurgeDirecotorInNextLoop = false;
 
-    m_obWinSizeInPixels = m_obWinSizeInPoints = CCSizeZero;    
+    m_obWinSizeInPoints = CCSizeZero;    
 
     m_pobOpenGLView = NULL;
 
@@ -317,8 +317,7 @@ void CCDirector::setOpenGLView(CCEGLView *pobOpenGLView)
         m_pobOpenGLView = pobOpenGLView;
 
         // set size
-        m_obWinSizeInPoints = m_pobOpenGLView->getSize();
-        m_obWinSizeInPixels = CCSizeMake(m_obWinSizeInPoints.width * m_fContentScaleFactor, m_obWinSizeInPoints.height * m_fContentScaleFactor);
+        m_obWinSizeInPoints = m_pobOpenGLView->getDesignResolutionSize();
         
         createStatsLabel();
         
@@ -490,7 +489,7 @@ CCSize CCDirector::getWinSize(void)
 
 CCSize CCDirector::getWinSizeInPixels()
 {
-    return m_obWinSizeInPixels;
+    return CCSizeMake(m_obWinSizeInPoints.width * m_fContentScaleFactor, m_obWinSizeInPoints.height * m_fContentScaleFactor);
 }
 
 CCSize CCDirector::getVisibleSize()
@@ -515,20 +514,6 @@ CCPoint CCDirector::getVisibleOrigin()
     {
         return CCPointZero;
     }
-}
-
-void CCDirector::reshapeProjection(const CCSize& newWindowSize)
-{
-    CC_UNUSED_PARAM(newWindowSize);
-    if (m_pobOpenGLView)
-    {
-       m_obWinSizeInPoints = m_pobOpenGLView->getSize();
-       m_obWinSizeInPixels = CCSizeMake(m_obWinSizeInPoints.width * m_fContentScaleFactor,
-                                     m_obWinSizeInPoints.height * m_fContentScaleFactor);
- 
-       setProjection(m_eProjection);       
-    }
-
 }
 
 // scene management
@@ -852,6 +837,7 @@ void CCDirector::setContentScaleFactor(float scaleFactor)
     if (scaleFactor != m_fContentScaleFactor)
     {
         m_fContentScaleFactor = scaleFactor;
+        createStatsLabel();
     }
 }
 

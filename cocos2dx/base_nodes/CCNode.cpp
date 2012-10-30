@@ -51,8 +51,6 @@ NS_CC_BEGIN
 // XXX: Yes, nodes might have a sort problem once every 15 days if the game runs at 60 FPS and each frame sprites are reordered.
 static int s_globalOrderOfArrival = 1;
 
-float CCNode::s_fContentScale = 1.0f;
-
 CCNode::CCNode(void)
 : m_nZOrder(0)
 , m_fVertexZ(0.0f)
@@ -71,7 +69,6 @@ CCNode::CCNode(void)
 , m_tAnchorPoint(CCPointZero)
 , m_tAnchorPointInPoints(CCPointZero)
 , m_tContentSize(CCSizeZero)
-, m_tContentSizeScaled(CCSizeZero)
 , m_bIsRunning(false)
 , m_pParent(NULL)
 // "whole screen" objects. like Scenes and Layers, should set m_bIgnoreAnchorPointForPosition to false
@@ -358,8 +355,7 @@ void CCNode::setAnchorPoint(const CCPoint& point)
     if( ! point.equals(m_tAnchorPoint))
     {
         m_tAnchorPoint = point;
-        m_tAnchorPointInPoints = ccp(m_tContentSizeScaled.width * m_tAnchorPoint.x,
-                                     m_tContentSizeScaled.height * m_tAnchorPoint.y);
+        m_tAnchorPointInPoints = ccp( m_tContentSize.width * m_tAnchorPoint.x, m_tContentSize.height * m_tAnchorPoint.y );
         m_bIsTransformDirty = m_bIsInverseDirty = true;
     }
 }
@@ -367,7 +363,7 @@ void CCNode::setAnchorPoint(const CCPoint& point)
 /// contentSize getter
 const CCSize & CCNode::getContentSize()
 {
-    return m_tContentSizeScaled;
+    return m_tContentSize;
 }
 
 void CCNode::setContentSize(const CCSize & size)
@@ -375,32 +371,8 @@ void CCNode::setContentSize(const CCSize & size)
     if( ! size.equals(m_tContentSize))
     {
         m_tContentSize = size;
-        m_tContentSizeScaled = size;
-        m_tContentSizeScaled.width *= s_fContentScale;
-        m_tContentSizeScaled.height *= s_fContentScale;
 
-        m_tAnchorPointInPoints = ccp(m_tContentSizeScaled.width * m_tAnchorPoint.x,
-                                     m_tContentSizeScaled.height * m_tAnchorPoint.y);
-        m_bIsTransformDirty = m_bIsInverseDirty = true;
-    }
-}
-
-const CCSize & CCNode::getContentSizeScaled()
-{
-    return m_tContentSizeScaled;
-}
-
-void CCNode::setContentSizeScaled(const CCSize & size)
-{
-    if( ! size.equals(m_tContentSizeScaled))
-    {
-        m_tContentSizeScaled = size;
-        m_tContentSize = size;
-        m_tContentSize.width /= s_fContentScale;
-        m_tContentSize.height *= s_fContentScale;
-        
-        m_tAnchorPointInPoints = ccp(m_tContentSizeScaled.width * m_tAnchorPoint.x,
-                                     m_tContentSizeScaled.height * m_tAnchorPoint.y);
+        m_tAnchorPointInPoints = ccp( m_tContentSize.width * m_tAnchorPoint.x, m_tContentSize.height * m_tAnchorPoint.y );
         m_bIsTransformDirty = m_bIsInverseDirty = true;
     }
 }
@@ -464,7 +436,7 @@ void CCNode::setUserData(void *var)
 
 CCRect CCNode::boundingBox()
 {
-    CCRect rect = CCRectMake(0, 0, m_tContentSizeScaled.width, m_tContentSizeScaled.height);
+    CCRect rect = CCRectMake(0, 0, m_tContentSize.width, m_tContentSize.height);
     return CCRectApplyAffineTransform(rect, nodeToParentTransform());
 }
 
@@ -484,8 +456,13 @@ void CCNode::cleanup()
 {
     // actions
     this->stopAllActions();
-    this->unscheduleAllSelectors();    
-
+    this->unscheduleAllSelectors();
+    
+    if ( m_eScriptType != kScriptTypeNone)
+    {
+        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeNodeEvent(this, kCCNodeOnCleanup);
+    }
+    
     // timers
     arrayMakeObjectsPerformSelector(m_pChildren, cleanup, CCNode*);
 }
@@ -866,6 +843,8 @@ void CCNode::onExit()
     }
 
     arrayMakeObjectsPerformSelector(m_pChildren, onExit, CCNode*);
+
+    
 }
 
 void CCNode::registerScriptHandler(int nHandler)
@@ -1145,9 +1124,11 @@ CCPoint CCNode::convertTouchToNodeSpaceAR(CCTouch *touch)
     return this->convertToNodeSpaceAR(point);
 }
 
-void CCNode::setContentScale(float scale)
+// MARMALADE ADDED
+void CCNode::updateTransform()
 {
-    s_fContentScale = scale;
+    // Recursively iterate over children
+    arrayMakeObjectsPerformSelector(m_pChildren, updateTransform, CCNode*);
 }
 
 NS_CC_END
