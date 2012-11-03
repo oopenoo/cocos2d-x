@@ -192,6 +192,11 @@ public:
     */
     CC_DEPRECATED_ATTRIBUTE static CCLayerColor * layerWithColor(const ccColor4B& color);
 
+    //@deprecated: This interface will be deprecated sooner or later.
+    static CCLayerColor* node();
+    
+    static CCLayerColor* create();
+    
     /** creates a CCLayer with color, width and height in Points */
     static CCLayerColor * create(const ccColor4B& color, GLfloat width, GLfloat height);
     /** creates a CCLayer with color. Width and height are the window size. */
@@ -221,9 +226,8 @@ public:
 
     virtual void setOpacityModifyRGB(bool bValue) {CC_UNUSED_PARAM(bValue);}
     virtual bool isOpacityModifyRGB(void) { return false;}
-    //@deprecated: This interface will be deprecated sooner or later.
-    CREATE_FUNC(CCLayerColor)
-    NODE_FUNC(CCLayerColor)
+
+
 protected:
     virtual void updateColor();
 };
@@ -272,6 +276,7 @@ public:
     /** Creates a full-screen CCLayer with a gradient between start and end in the direction of v. */
     static CCLayerGradient* create(const ccColor4B& start, const ccColor4B& end, const CCPoint& v);
 
+    virtual bool init();
     /** Initializes the CCLayer with a gradient between start and end. */
     virtual bool initWithColor(const ccColor4B& start, const ccColor4B& end);
 
@@ -293,9 +298,11 @@ public:
     virtual void setCompressedInterpolation(bool bCompressedInterpolation);
     virtual bool isCompressedInterpolation();
 
-    // @deprecated: This interface will be deprecated sooner or later.
-    NODE_FUNC(CCLayerGradient)
-    CREATE_FUNC(CCLayerGradient)
+    //@deprecated: This interface will be deprecated sooner or later.
+    static CCLayerGradient* node();
+    
+    static CCLayerGradient* create();
+
 protected:
     virtual void updateColor();
 };
@@ -350,9 +357,9 @@ public:
     void switchToAndReleaseMe(unsigned int n);
     
     //@deprecated: This interface will be deprecated sooner or later.
-    NODE_FUNC(CCLayerMultiplex)
-
-    CREATE_FUNC(CCLayerMultiplex)
+    static CCLayerMultiplex* node();
+    
+    static CCLayerMultiplex* create();
 };
 
 

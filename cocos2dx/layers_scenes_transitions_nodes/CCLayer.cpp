@@ -530,6 +530,25 @@ void CCLayerColor::setBlendFunc(ccBlendFunc var)
     m_tBlendFunc = var;
 }
 
+CCLayerColor* CCLayerColor::node()
+{
+    return CCLayerColor::create();
+}
+
+CCLayerColor* CCLayerColor::create()
+{
+    CCLayerColor* pRet = new CCLayerColor();
+    if (pRet && pRet->init())
+    {
+        pRet->autorelease();
+    }
+    else
+    {
+        CC_SAFE_DELETE(pRet);
+    }
+    return pRet;
+}
+
 CCLayerColor * CCLayerColor::layerWithColor(const ccColor4B& color, GLfloat width, GLfloat height)
 {
     return CCLayerColor::create(color,width,height);
@@ -695,6 +714,30 @@ CCLayerGradient* CCLayerGradient::create(const ccColor4B& start, const ccColor4B
     }
     CC_SAFE_DELETE(pLayer);
     return NULL;
+}
+
+CCLayerGradient* CCLayerGradient::node()
+{
+    return CCLayerGradient::create();
+}
+
+CCLayerGradient* CCLayerGradient::create()
+{
+    CCLayerGradient* pRet = new CCLayerGradient();
+    if (pRet && pRet->init())
+    {
+        pRet->autorelease();
+    }
+    else
+    {
+        CC_SAFE_DELETE(pRet);
+    }
+    return pRet;
+}
+
+bool CCLayerGradient::init()
+{
+	return initWithColor(ccc4(0, 0, 0, 255), ccc4(0, 0, 0, 255));
 }
 
 bool CCLayerGradient::initWithColor(const ccColor4B& start, const ccColor4B& end)
@@ -893,6 +936,26 @@ CCLayerMultiplex * CCLayerMultiplex::createWithLayer(CCLayer* layer)
 {
     return CCLayerMultiplex::create(layer, NULL);
 }
+
+CCLayerMultiplex* CCLayerMultiplex::node()
+{
+    return CCLayerMultiplex::create();
+}
+
+CCLayerMultiplex* CCLayerMultiplex::create()
+{
+    CCLayerMultiplex* pRet = new CCLayerMultiplex();
+    if (pRet && pRet->init())
+    {
+        pRet->autorelease();
+    }
+    else
+    {
+        CC_SAFE_DELETE(pRet);
+    }
+    return pRet;
+}
+
 
 void CCLayerMultiplex::addLayer(CCLayer* layer)
 {
