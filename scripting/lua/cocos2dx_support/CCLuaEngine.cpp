@@ -456,6 +456,24 @@ int CCLuaEngine::executeLayerTouchesEvent(CCLayer* pLayer, int eventType, CCSet 
     return ret;
 }
 
+int CCLuaEngine::executeLayerKeypadEvent(CCLayer* pLayer, int eventType)
+{
+    int ret = 0;
+    do
+    {
+        CCScriptHandlerEntry* pScriptHandlerEntry = pLayer->getScriptKeypadHandlerEntry();
+        CC_BREAK_IF(NULL == pScriptHandlerEntry);
+        int nScriptHandler = pScriptHandlerEntry->getHandler();
+        CC_BREAK_IF(0 == nScriptHandler);
+        
+        cleanStack();
+        lua_newtable(m_state);
+        lua_pushinteger(m_state, eventType);
+        ret = executeFunctionByHandler(nScriptHandler, 1);
+    } while (0);
+    return ret;
+}
+
 int CCLuaEngine::executeFunctionByHandler(int nHandler, int numArgs)
 {
     if (pushFunction(nHandler))                                         /* stack: ... arg1 arg2 ... func */

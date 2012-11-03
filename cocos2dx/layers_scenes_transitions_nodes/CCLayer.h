@@ -134,15 +134,25 @@ public:
     bool isKeypadEnabled();
     void setKeypadEnabled(bool value);
     
-    inline CCTouchScriptHandlerEntry* getScriptHandlerEntry() { return m_pScriptHandlerEntry; };
-protected:   
+    /** Register keypad events handler */
+    void registerScriptKeypadHandler(int nHandler);
+    /** Unregister keypad events handler */
+    void unregisterScriptKeypadHandler(void);
+
+    virtual void keyBackClicked(void);
+    virtual void keyMenuClicked(void);
+
+    inline CCTouchScriptHandlerEntry* getScriptHandlerEntry() { return m_pScriptTouchHandlerEntry; };
+    inline CCScriptHandlerEntry* getScriptKeypadHandlerEntry() { return m_pScriptKeypadHandlerEntry; };
+protected:
     bool m_bIsTouchEnabled;
     bool m_bIsAccelerometerEnabled;
     bool m_bIsKeypadEnabled;
     
 private:
     // Script touch events handler
-    CCTouchScriptHandlerEntry* m_pScriptHandlerEntry;
+    CCTouchScriptHandlerEntry* m_pScriptTouchHandlerEntry;
+    CCScriptHandlerEntry* m_pScriptKeypadHandlerEntry;
     
     int m_bTouchPriority;
     ccTouchesMode m_bTouchMode;

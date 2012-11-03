@@ -46,7 +46,8 @@ CCLayer::CCLayer()
 :m_bIsTouchEnabled(false)
 ,m_bIsAccelerometerEnabled(false)
 ,m_bIsKeypadEnabled(false)
-,m_pScriptHandlerEntry(NULL)
+,m_pScriptTouchHandlerEntry(NULL)
+,m_pScriptKeypadHandlerEntry(NULL)
 {
     setAnchorPoint(ccp(0.5f, 0.5f));
     m_bIgnoreAnchorPointForPosition = true;
@@ -57,6 +58,7 @@ CCLayer::CCLayer()
 CCLayer::~CCLayer()
 {
     unregisterScriptTouchHandler();
+    unregisterScriptKeypadHandler();
 }
 
 bool CCLayer::init()
@@ -102,19 +104,19 @@ void CCLayer::registerWithTouchDispatcher()
     CCTouchDispatcher* pDispatcher = CCDirector::sharedDirector()->getTouchDispatcher();
 
     // Using LuaBindings
-    if (m_pScriptHandlerEntry)
+    if (m_pScriptTouchHandlerEntry)
     {
-	    if (m_pScriptHandlerEntry->isMultiTouches())
+	    if (m_pScriptTouchHandlerEntry->isMultiTouches())
 	    {
 	       pDispatcher->addStandardDelegate(this, 0);
-	       LUALOG("[LUA] Add multi-touches event handler: %d", m_pScriptHandlerEntry->getHandler());
+	       LUALOG("[LUA] Add multi-touches event handler: %d", m_pScriptTouchHandlerEntry->getHandler());
 	    }
 	    else
 	    {
 	       pDispatcher->addTargetedDelegate(this,
-						m_pScriptHandlerEntry->getPriority(),
-						m_pScriptHandlerEntry->getSwallowsTouches());
-	       LUALOG("[LUA] Add touch event handler: %d", m_pScriptHandlerEntry->getHandler());
+						m_pScriptTouchHandlerEntry->getPriority(),
+						m_pScriptTouchHandlerEntry->getSwallowsTouches());
+	       LUALOG("[LUA] Add touch event handler: %d", m_pScriptTouchHandlerEntry->getHandler());
 	    }
     }
     else
@@ -130,13 +132,13 @@ void CCLayer::registerWithTouchDispatcher()
 void CCLayer::registerScriptTouchHandler(int nHandler, bool bIsMultiTouches, int nPriority, bool bSwallowsTouches)
 {
     unregisterScriptTouchHandler();
-    m_pScriptHandlerEntry = CCTouchScriptHandlerEntry::create(nHandler, bIsMultiTouches, nPriority, bSwallowsTouches);
-    m_pScriptHandlerEntry->retain();
+    m_pScriptTouchHandlerEntry = CCTouchScriptHandlerEntry::create(nHandler, bIsMultiTouches, nPriority, bSwallowsTouches);
+    m_pScriptTouchHandlerEntry->retain();
 }
 
 void CCLayer::unregisterScriptTouchHandler(void)
 {
-    CC_SAFE_RELEASE_NULL(m_pScriptHandlerEntry);
+    CC_SAFE_RELEASE_NULL(m_pScriptTouchHandlerEntry);
     }
 
 int CCLayer::excuteScriptTouchHandler(int nEventType, CCTouch *pTouch)
@@ -284,6 +286,34 @@ void CCLayer::setKeypadEnabled(bool enabled)
                 pDirector->getKeypadDispatcher()->removeDelegate(this);
             }
         }
+    }
+}
+
+void CCLayer::registerScriptKeypadHandler(int nHandler)
+{
+    unregisterScriptKeypadHandler();
+    m_pScriptKeypadHandlerEntry = CCScriptHandlerEntry::create(nHandler);
+    m_pScriptKeypadHandlerEntry->retain();
+}
+
+void CCLayer::unregisterScriptKeypadHandler(void)
+{
+    CC_SAFE_RELEASE_NULL(m_pScriptKeypadHandlerEntry);
+}
+
+void CCLayer::keyBackClicked(void)
+{
+    if (m_pScriptKeypadHandlerEntry)
+    {
+        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeLayerKeypadEvent(this, kTypeBackClicked);
+    }
+}
+
+void CCLayer::keyMenuClicked(void)
+{
+    if (m_pScriptKeypadHandlerEntry)
+    {
+        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeLayerKeypadEvent(this, kTypeMenuClicked);
     }
 }
 

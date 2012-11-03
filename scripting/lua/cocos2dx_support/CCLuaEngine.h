@@ -195,6 +195,7 @@ public:
     virtual int executeSchedule(CCTimer* pTimer, float dt, CCNode* pNode = NULL);
     virtual int executeLayerTouchesEvent(CCLayer* pLayer, int eventType, CCSet *pTouches);
     virtual int executeLayerTouchEvent(CCLayer* pLayer, int eventType, CCTouch *pTouch);
+    virtual int executeLayerKeypadEvent(CCLayer* pLayer, int eventType);
     
     /**
      @brief Method used to get a pointer to the lua_State that the script module is attached to.

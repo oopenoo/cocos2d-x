@@ -223,6 +223,9 @@ public:
     /** functions for execute touch event */
     virtual int executeLayerTouchesEvent(CCLayer* pLayer, int eventType, CCSet *pTouches) = 0;
     virtual int executeLayerTouchEvent(CCLayer* pLayer, int eventType, CCTouch *pTouch) = 0;
+    
+    /** functions for keypad event */
+    virtual int executeLayerKeypadEvent(CCLayer* pLayer, int eventType) = 0;
 };
 
 /**
