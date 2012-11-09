@@ -20,6 +20,7 @@ $pfile "CCTouchDispatcher.pkg"
 $pfile "CCDirector.pkg"
 $pfile "CCUserDefault.pkg"
 $pfile "CCNotificationCenter.pkg"
+$pfile "CCKeypadDispatcher.pkg"
 
 $pfile "CCNode.pkg"
 $pfile "CCTexture2D.pkg"

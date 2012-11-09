@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on Sat Nov  3 10:10:14 2012.
+** Generated automatically by tolua++-1.0.92 on Sat Nov  3 17:02:49 2012.
 */
 
 /****************************************************************************
@@ -55841,6 +55841,8 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"unregisterScriptObserver",tolua_Cocos2d_CCNotificationCenter_unregisterScriptObserver00);
    tolua_function(tolua_S,"postNotification",tolua_Cocos2d_CCNotificationCenter_postNotification00);
   tolua_endmodule(tolua_S);
+  tolua_constant(tolua_S,"kTypeBackClicked",kTypeBackClicked);
+  tolua_constant(tolua_S,"kTypeMenuClicked",kTypeMenuClicked);
   tolua_constant(tolua_S,"kCCNodeTagInvalid",kCCNodeTagInvalid);
   tolua_constant(tolua_S,"kCCNodeOnEnter",kCCNodeOnEnter);
   tolua_constant(tolua_S,"kCCNodeOnExit",kCCNodeOnExit);
