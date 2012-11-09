@@ -148,7 +148,7 @@ SimpleAudioEngine::SimpleAudioEngine()
 
 SimpleAudioEngine::~SimpleAudioEngine()
 {
-
+    printf("Cocos2d: cocos2d: deallocing SimpleAudioEngine %p\n", this);
 }
 
 SimpleAudioEngine* SimpleAudioEngine::sharedEngine()
@@ -179,6 +179,7 @@ void SimpleAudioEngine::preloadBackgroundMusic(const char* pszFilePath)
 
 void SimpleAudioEngine::playBackgroundMusic(const char* pszFilePath, bool bLoop)
 {
+    static_stopBackgroundMusic();
     static_playBackgroundMusic(pszFilePath, bLoop);
 }
 
