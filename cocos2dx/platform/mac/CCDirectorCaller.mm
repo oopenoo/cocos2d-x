@@ -64,10 +64,6 @@ static id s_sharedDirectorCaller;
 		CVDisplayLinkRelease(displayLink);
 	}
     
-    CCLOG("--------------------------------------------------------------------------------");
-    CCLOG("");
-    CCLOG("");
-    CCLOG("");
 	[super dealloc];
 }
 
