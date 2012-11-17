@@ -28,6 +28,7 @@
 #include "platform/CCCommon.h"
 #include "touch_dispatcher/CCTouch.h"
 #include "cocoa/CCSet.h"
+#include "CCAccelerometer.h"
 #include <map>
 #include <string>
 #include <list>
@@ -226,6 +227,9 @@ public:
     
     /** functions for keypad event */
     virtual int executeLayerKeypadEvent(CCLayer* pLayer, int eventType) = 0;
+    
+    /** functions for accelerate event */
+    virtual int executeLayerAccelerometerEvent(CCLayer* pLayer, CCAcceleration* pAccelerationValue) = 0;
 };
 
 /**

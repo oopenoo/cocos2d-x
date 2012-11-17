@@ -474,6 +474,27 @@ int CCLuaEngine::executeLayerKeypadEvent(CCLayer* pLayer, int eventType)
     return ret;
 }
 
+int CCLuaEngine::executeLayerAccelerometerEvent(CCLayer* pLayer, CCAcceleration* pAccelerationValue)
+{
+    int ret = 0;
+    do
+    {
+        CCScriptHandlerEntry* pScriptHandlerEntry = pLayer->getScriptAccelerateHandlerEntry();
+        CC_BREAK_IF(NULL == pScriptHandlerEntry);
+        int nScriptHandler = pScriptHandlerEntry->getHandler();
+        CC_BREAK_IF(0 == nScriptHandler);
+        
+        cleanStack();
+        lua_newtable(m_state);
+        lua_pushnumber(m_state, pAccelerationValue->x);
+        lua_pushnumber(m_state, pAccelerationValue->y);
+        lua_pushnumber(m_state, pAccelerationValue->z);
+        lua_pushnumber(m_state, pAccelerationValue->timestamp);
+        ret = executeFunctionByHandler(nScriptHandler, 4);
+    } while (0);
+    return ret;
+}
+
 int CCLuaEngine::executeFunctionByHandler(int nHandler, int numArgs)
 {
     if (pushFunction(nHandler))                                         /* stack: ... arg1 arg2 ... func */

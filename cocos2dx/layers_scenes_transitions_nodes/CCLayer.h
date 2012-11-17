@@ -87,6 +87,8 @@ public:
     virtual void ccTouchesCancelled(CCSet *pTouches, CCEvent *pEvent);
     
     virtual void didAccelerate(CCAcceleration* pAccelerationValue);
+    void registerScriptAccelerateHandler(int nHandler);
+    void unregisterScriptAccelerateHandler(void);
 
     /** If isTouchEnabled, this method is called onEnter. Override it to change the
     way CCLayer receives touch events.
@@ -144,6 +146,7 @@ public:
 
     inline CCTouchScriptHandlerEntry* getScriptHandlerEntry() { return m_pScriptTouchHandlerEntry; };
     inline CCScriptHandlerEntry* getScriptKeypadHandlerEntry() { return m_pScriptKeypadHandlerEntry; };
+    inline CCScriptHandlerEntry* getScriptAccelerateHandlerEntry() { return m_pScriptAccelerateHandlerEntry; };
 protected:
     bool m_bIsTouchEnabled;
     bool m_bIsAccelerometerEnabled;
@@ -153,6 +156,7 @@ private:
     // Script touch events handler
     CCTouchScriptHandlerEntry* m_pScriptTouchHandlerEntry;
     CCScriptHandlerEntry* m_pScriptKeypadHandlerEntry;
+    CCScriptHandlerEntry* m_pScriptAccelerateHandlerEntry;
     
     int m_bTouchPriority;
     ccTouchesMode m_bTouchMode;

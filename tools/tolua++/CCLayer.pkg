@@ -19,6 +19,9 @@ class CCLayer : public CCNode
     void registerScriptKeypadHandler(LUA_FUNCTION nHandler);
     void unregisterScriptKeypadHandler(void);
 
+    void registerScriptAccelerateHandler(LUA_FUNCTION nHandler);
+    void unregisterScriptAccelerateHandler(void);
+
     static CCLayer *create(void);
 };
 
