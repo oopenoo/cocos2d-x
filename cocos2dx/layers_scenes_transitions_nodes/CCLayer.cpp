@@ -48,6 +48,7 @@ CCLayer::CCLayer()
 ,m_bIsKeypadEnabled(false)
 ,m_pScriptTouchHandlerEntry(NULL)
 ,m_pScriptKeypadHandlerEntry(NULL)
+,m_pScriptAccelerateHandlerEntry(NULL)
 {
     setAnchorPoint(ccp(0.5f, 0.5f));
     m_bIgnoreAnchorPointForPosition = true;
@@ -59,6 +60,7 @@ CCLayer::~CCLayer()
 {
     unregisterScriptTouchHandler();
     unregisterScriptKeypadHandler();
+    unregisterScriptAccelerateHandler();
 }
 
 bool CCLayer::init()
@@ -251,16 +253,27 @@ void CCLayer::setAccelerometerInterval(double interval) {
 }
 
 
-void CCLayer::didAccelerate(CCAcceleration* pAccelerationValue) {
+void CCLayer::didAccelerate(CCAcceleration* pAccelerationValue)
+{
     CC_UNUSED_PARAM(pAccelerationValue);
-//    
-//    if ( m_eScriptType != kScriptTypeNone)
-//    {
-//        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeAccelerometerEvent(this, pAccelerationValue);
-//    }
     
+    if ( m_eScriptType != kScriptTypeNone)
+    {
+        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeLayerAccelerometerEvent(this, pAccelerationValue);
+    }
 }
 
+void CCLayer::registerScriptAccelerateHandler(int nHandler)
+{
+    unregisterScriptAccelerateHandler();
+    m_pScriptAccelerateHandlerEntry = CCScriptHandlerEntry::create(nHandler);
+    m_pScriptAccelerateHandlerEntry->retain();
+}
+
+void CCLayer::unregisterScriptAccelerateHandler(void)
+{
+    CC_SAFE_RELEASE_NULL(m_pScriptAccelerateHandlerEntry);
+}
 
 /// isKeypadEnabled getter
 bool CCLayer::isKeypadEnabled()
