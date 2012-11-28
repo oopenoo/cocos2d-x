@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on Fri Nov 16 09:24:41 2012.
+** Generated automatically by tolua++-1.0.92 on Wed Nov 21 11:52:13 2012.
 */
 
 /****************************************************************************
@@ -148,6 +148,13 @@ static int tolua_collect_ccV2F_C4B_T2F (lua_State* tolua_S)
     return 0;
 }
 
+static int tolua_collect_ccColor3B (lua_State* tolua_S)
+{
+ ccColor3B* self = (ccColor3B*) tolua_tousertype(tolua_S,1,0);
+    Mtolua_delete(self);
+    return 0;
+}
+
 static int tolua_collect_CCAffineTransform (lua_State* tolua_S)
 {
  CCAffineTransform* self = (CCAffineTransform*) tolua_tousertype(tolua_S,1,0);
@@ -155,9 +162,9 @@ static int tolua_collect_CCAffineTransform (lua_State* tolua_S)
     return 0;
 }
 
-static int tolua_collect_ccGLServerState (lua_State* tolua_S)
+static int tolua_collect_CCApplication (lua_State* tolua_S)
 {
- ccGLServerState* self = (ccGLServerState*) tolua_tousertype(tolua_S,1,0);
+ CCApplication* self = (CCApplication*) tolua_tousertype(tolua_S,1,0);
     Mtolua_delete(self);
     return 0;
 }
@@ -169,16 +176,16 @@ static int tolua_collect_ccV2F_C4B_T2F_Quad (lua_State* tolua_S)
     return 0;
 }
 
-static int tolua_collect_ccColor3B (lua_State* tolua_S)
+static int tolua_collect_ccTexParams (lua_State* tolua_S)
 {
- ccColor3B* self = (ccColor3B*) tolua_tousertype(tolua_S,1,0);
+ ccTexParams* self = (ccTexParams*) tolua_tousertype(tolua_S,1,0);
     Mtolua_delete(self);
     return 0;
 }
 
-static int tolua_collect_ccTexParams (lua_State* tolua_S)
+static int tolua_collect_ccGLServerState (lua_State* tolua_S)
 {
- ccTexParams* self = (ccTexParams*) tolua_tousertype(tolua_S,1,0);
+ ccGLServerState* self = (ccGLServerState*) tolua_tousertype(tolua_S,1,0);
     Mtolua_delete(self);
     return 0;
 }
@@ -10376,6 +10383,35 @@ static int tolua_Cocos2d_CCAffineTransformInvert00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'CCAffineTransformInvert'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: delete of class  CCApplication */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCApplication_delete00
+static int tolua_Cocos2d_CCApplication_delete00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CCApplication",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CCApplication* self = (CCApplication*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'delete'", NULL);
+#endif
+  Mtolua_delete(self);
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'delete'.",&tolua_err);
  return 0;
 #endif
 }
@@ -55827,8 +55863,13 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"kTargetBlackBerry",kTargetBlackBerry);
   tolua_constant(tolua_S,"kTargetDevice",kTargetDevice);
   tolua_constant(tolua_S,"kTargetSimulator",kTargetSimulator);
+  #ifdef __cplusplus
+  tolua_cclass(tolua_S,"CCApplication","CCApplication","",tolua_collect_CCApplication);
+  #else
   tolua_cclass(tolua_S,"CCApplication","CCApplication","",NULL);
+  #endif
   tolua_beginmodule(tolua_S,"CCApplication");
+   tolua_function(tolua_S,"delete",tolua_Cocos2d_CCApplication_delete00);
    tolua_function(tolua_S,"sharedApplication",tolua_Cocos2d_CCApplication_sharedApplication00);
    tolua_function(tolua_S,"getCurrentLanguage",tolua_Cocos2d_CCApplication_getCurrentLanguage00);
    tolua_function(tolua_S,"getTargetPlatform",tolua_Cocos2d_CCApplication_getTargetPlatform00);

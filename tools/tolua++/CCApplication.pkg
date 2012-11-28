@@ -29,6 +29,7 @@ enum TargetEnvironment
 
 class CCApplication
 {
+    ~CCApplication();
     static CCApplication* sharedApplication();
     ccLanguageType getCurrentLanguage();
     TargetPlatform getTargetPlatform();
