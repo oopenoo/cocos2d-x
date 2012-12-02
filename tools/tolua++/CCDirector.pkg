@@ -13,9 +13,6 @@ class CCDirector : public CCObject
     double getAnimationInterval(void);
 
     bool isDisplayStats(void);
-    void setDisplayStats(bool bDisplayFPS);
-    void setStatsPosition(const CCPoint& FPSPosition, const CCPoint& SPFPosition, const CCPoint& DrawsPosition);
-    void setStatsFont(const char* fontname, int fontsize);
 
     bool isPaused(void);
     unsigned int getTotalFrames(void);

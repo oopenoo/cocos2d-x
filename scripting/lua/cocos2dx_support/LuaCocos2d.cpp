@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on Sat Dec  1 22:39:26 2012.
+** Generated automatically by tolua++-1.0.92 on Sat Dec  1 22:46:27 2012.
 */
 
 /****************************************************************************
@@ -10704,111 +10704,6 @@ static int tolua_Cocos2d_CCDirector_isDisplayStats00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setDisplayStats of class  CCDirector */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_setDisplayStats00
-static int tolua_Cocos2d_CCDirector_setDisplayStats00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"CCDirector",0,&tolua_err) ||
-     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  CCDirector* self = (CCDirector*)  tolua_tousertype(tolua_S,1,0);
-  bool bDisplayFPS = ((bool)  tolua_toboolean(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setDisplayStats'", NULL);
-#endif
-  {
-   self->setDisplayStats(bDisplayFPS);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setDisplayStats'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setStatsPosition of class  CCDirector */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_setStatsPosition00
-static int tolua_Cocos2d_CCDirector_setStatsPosition00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"CCDirector",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const CCPoint",0,&tolua_err)) ||
-     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const CCPoint",0,&tolua_err)) ||
-     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_isusertype(tolua_S,4,"const CCPoint",0,&tolua_err)) ||
-     !tolua_isnoobj(tolua_S,5,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  CCDirector* self = (CCDirector*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* FPSPosition = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
-  const CCPoint* SPFPosition = ((const CCPoint*)  tolua_tousertype(tolua_S,3,0));
-  const CCPoint* DrawsPosition = ((const CCPoint*)  tolua_tousertype(tolua_S,4,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setStatsPosition'", NULL);
-#endif
-  {
-   self->setStatsPosition(*FPSPosition,*SPFPosition,*DrawsPosition);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setStatsPosition'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setStatsFont of class  CCDirector */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_setStatsFont00
-static int tolua_Cocos2d_CCDirector_setStatsFont00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"CCDirector",0,&tolua_err) ||
-     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  CCDirector* self = (CCDirector*)  tolua_tousertype(tolua_S,1,0);
-  const char* fontname = ((const char*)  tolua_tostring(tolua_S,2,0));
-  int fontsize = ((int)  tolua_tonumber(tolua_S,3,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setStatsFont'", NULL);
-#endif
-  {
-   self->setStatsFont(fontname,fontsize);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setStatsFont'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: isPaused of class  CCDirector */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_isPaused00
 static int tolua_Cocos2d_CCDirector_isPaused00(lua_State* tolua_S)
@@ -19525,37 +19420,6 @@ static int tolua_Cocos2d_CCSprite_getOpacity00(lua_State* tolua_S)
  tolua_error(tolua_S,"#ferror in function 'getOpacity'.",&tolua_err);
  return 0;
 #endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* get function: opacity of class  CCSprite */
-#ifndef TOLUA_DISABLE_tolua_get_CCSprite_unsigned_opacity
-static int tolua_get_CCSprite_unsigned_opacity(lua_State* tolua_S)
-{
-  CCSprite* self = (CCSprite*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'opacity'",NULL);
-#endif
-  tolua_pushnumber(tolua_S,(lua_Number)self->getOpacity());
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: opacity of class  CCSprite */
-#ifndef TOLUA_DISABLE_tolua_set_CCSprite_unsigned_opacity
-static int tolua_set_CCSprite_unsigned_opacity(lua_State* tolua_S)
-{
-  CCSprite* self = (CCSprite*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  tolua_Error tolua_err;
-  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'opacity'",NULL);
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
-#endif
-  self->setOpacity((( unsigned char)  tolua_tonumber(tolua_S,2,0))
-)
-;
- return 0;
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -41246,37 +41110,6 @@ static int tolua_Cocos2d_CCLabelBMFont_setOpacityModifyRGB00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* get function: opacity of class  CCLabelBMFont */
-#ifndef TOLUA_DISABLE_tolua_get_CCLabelBMFont_unsigned_opacity
-static int tolua_get_CCLabelBMFont_unsigned_opacity(lua_State* tolua_S)
-{
-  CCLabelBMFont* self = (CCLabelBMFont*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'opacity'",NULL);
-#endif
-  tolua_pushnumber(tolua_S,(lua_Number)self->getOpacity());
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: opacity of class  CCLabelBMFont */
-#ifndef TOLUA_DISABLE_tolua_set_CCLabelBMFont_unsigned_opacity
-static int tolua_set_CCLabelBMFont_unsigned_opacity(lua_State* tolua_S)
-{
-  CCLabelBMFont* self = (CCLabelBMFont*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  tolua_Error tolua_err;
-  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'opacity'",NULL);
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
-#endif
-  self->setOpacity((( unsigned char)  tolua_tonumber(tolua_S,2,0))
-)
-;
- return 0;
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: purgeCachedData of class  CCLabelBMFont */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_CCLabelBMFont_purgeCachedData00
 static int tolua_Cocos2d_CCLabelBMFont_purgeCachedData00(lua_State* tolua_S)
@@ -55473,9 +55306,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getRunningScene",tolua_Cocos2d_CCDirector_getRunningScene00);
    tolua_function(tolua_S,"getAnimationInterval",tolua_Cocos2d_CCDirector_getAnimationInterval00);
    tolua_function(tolua_S,"isDisplayStats",tolua_Cocos2d_CCDirector_isDisplayStats00);
-   tolua_function(tolua_S,"setDisplayStats",tolua_Cocos2d_CCDirector_setDisplayStats00);
-   tolua_function(tolua_S,"setStatsPosition",tolua_Cocos2d_CCDirector_setStatsPosition00);
-   tolua_function(tolua_S,"setStatsFont",tolua_Cocos2d_CCDirector_setStatsFont00);
    tolua_function(tolua_S,"isPaused",tolua_Cocos2d_CCDirector_isPaused00);
    tolua_function(tolua_S,"getTotalFrames",tolua_Cocos2d_CCDirector_getTotalFrames00);
    tolua_function(tolua_S,"getOpenGLView",tolua_Cocos2d_CCDirector_getOpenGLView00);
@@ -55792,7 +55622,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setVisible",tolua_Cocos2d_CCSprite_setVisible00);
    tolua_function(tolua_S,"setOpacity",tolua_Cocos2d_CCSprite_setOpacity00);
    tolua_function(tolua_S,"getOpacity",tolua_Cocos2d_CCSprite_getOpacity00);
-   tolua_variable(tolua_S,"opacity",tolua_get_CCSprite_unsigned_opacity,tolua_set_CCSprite_unsigned_opacity);
    tolua_function(tolua_S,"setColor",tolua_Cocos2d_CCSprite_setColor00);
    tolua_function(tolua_S,"getColor",tolua_Cocos2d_CCSprite_getColor00);
    tolua_function(tolua_S,"setOpacityModifyRGB",tolua_Cocos2d_CCSprite_setOpacityModifyRGB00);
@@ -56926,7 +56755,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setOpacity",tolua_Cocos2d_CCLabelBMFont_setOpacity00);
    tolua_function(tolua_S,"isOpacityModifyRGB",tolua_Cocos2d_CCLabelBMFont_isOpacityModifyRGB00);
    tolua_function(tolua_S,"setOpacityModifyRGB",tolua_Cocos2d_CCLabelBMFont_setOpacityModifyRGB00);
-   tolua_variable(tolua_S,"opacity",tolua_get_CCLabelBMFont_unsigned_opacity,tolua_set_CCLabelBMFont_unsigned_opacity);
    tolua_function(tolua_S,"purgeCachedData",tolua_Cocos2d_CCLabelBMFont_purgeCachedData00);
    tolua_function(tolua_S,"create",tolua_Cocos2d_CCLabelBMFont_create00);
    tolua_function(tolua_S,"create",tolua_Cocos2d_CCLabelBMFont_create01);
