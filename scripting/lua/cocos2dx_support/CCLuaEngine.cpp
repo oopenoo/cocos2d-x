@@ -463,7 +463,7 @@ int CCLuaEngine::executeLayerKeypadEvent(CCLayer* pLayer, int eventType)
     return ret;
 }
 
-int CCLuaEngine::executeLayerAccelerometerEvent(CCLayer* pLayer, CCAcceleration* pAccelerationValue)
+int CCLuaEngine::executeAccelerometerEvent(CCLayer* pLayer, CCAcceleration* pAccelerationValue)
 {
     int ret = 0;
     do
