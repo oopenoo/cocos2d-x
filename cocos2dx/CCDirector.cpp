@@ -458,7 +458,10 @@ CCPoint CCDirector::convertToGL(const CCPoint& uiPoint)
 	kmScalar zClip = transform.mat[14]/transform.mat[15];
 	
     CCSize glSize = m_pobOpenGLView->getDesignResolutionSize();
-	kmVec3 clipCoord = {2.0*uiPoint.x/glSize.width - 1.0, 1.0 - 2.0*uiPoint.y/glSize.height, zClip};
+	kmVec3 clipCoord = {
+        (float)2.0*uiPoint.x/glSize.width - (float)1.0,
+        (float)1.0 - (float)2.0*uiPoint.y/glSize.height, zClip
+    };
 	
 	kmVec3 glCoord;
 	kmVec3TransformCoord(&glCoord, &clipCoord, &transformInv);

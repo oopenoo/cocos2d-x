@@ -144,7 +144,7 @@ public:
     virtual void keyBackClicked(void);
     virtual void keyMenuClicked(void);
     
-    inline CCTouchScriptHandlerEntry* getScriptHandlerEntry() { return m_pScriptTouchHandlerEntry; };
+    inline CCTouchScriptHandlerEntry* getScriptTouchHandlerEntry() { return m_pScriptTouchHandlerEntry; };
     inline CCScriptHandlerEntry* getScriptKeypadHandlerEntry() { return m_pScriptKeypadHandlerEntry; };
     inline CCScriptHandlerEntry* getScriptAccelerateHandlerEntry() { return m_pScriptAccelerateHandlerEntry; };
 protected:   

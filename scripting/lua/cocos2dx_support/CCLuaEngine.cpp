@@ -395,7 +395,7 @@ int CCLuaEngine::executeLayerTouchEvent(CCLayer* pLayer, int eventType, CCTouch 
     int ret = 0;
     do 
     {
-        CCTouchScriptHandlerEntry* pScriptHandlerEntry = pLayer->getScriptHandlerEntry();
+        CCTouchScriptHandlerEntry* pScriptHandlerEntry = pLayer->getScriptTouchHandlerEntry();
         CC_BREAK_IF(NULL == pScriptHandlerEntry);
         int nScriptHandler = pScriptHandlerEntry->getHandler();
         CC_BREAK_IF(0 == nScriptHandler);
@@ -415,7 +415,7 @@ int CCLuaEngine::executeLayerTouchesEvent(CCLayer* pLayer, int eventType, CCSet 
     int ret = 0;
     do 
     {
-        CCTouchScriptHandlerEntry* pScriptHandlerEntry = pLayer->getScriptHandlerEntry();
+        CCTouchScriptHandlerEntry* pScriptHandlerEntry = pLayer->getScriptTouchHandlerEntry();
         CC_BREAK_IF(NULL == pScriptHandlerEntry);
         int nScriptHandler = pScriptHandlerEntry->getHandler();
         CC_BREAK_IF(0 == nScriptHandler);
